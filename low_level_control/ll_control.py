@@ -8,6 +8,12 @@
 # Neo pixel brightness
 brightness = 0.1
 
+# max power send to both motors at once
+# with a regular power bank it should be no problem but 
+# a computer's USB port might not have enough power
+# remember, if USB power is present the battery is ignored
+max_power = 1
+
 # color definitions (I don't like the formatting either)
 colors = {
     "red": (brightness, 0,    0),
@@ -42,8 +48,11 @@ def init():
 # the power needs to be limited
 # something is
 def limit_power(power):
-    if(power > 0.3):
-        return 0.3
+    print("trying to limit power")
+    print(power)
+    print(max_power)
+    if(power > max_power):
+        return max_power
     if(power < 0):
         return 0
     return power
