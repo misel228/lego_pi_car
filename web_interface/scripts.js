@@ -99,8 +99,14 @@ var test_loop = function() {
 //speed will be made variable with joystick input later
 var speed = 1;
 
+// store last command to avoid resending the same stuff all the time
+var last_command = '';
 var loop = function() {
 	var command = get_command();
+	if(command == last_command) {
+		return;
+	}
+	last_command = command
 	ws.send(command);
 }
 
