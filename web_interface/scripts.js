@@ -152,10 +152,10 @@ var get_direction = function () {
 //make sure to never drive left and right at the same time
 var get_turn = function () {
 	if(key_pressed_states[37]) {
-		return 'turn_left';
+		return 'left';
 	}
 	if(key_pressed_states[39]) {
-		return 'turn_right';
+		return 'right';
 	}
 	return false;
 }
