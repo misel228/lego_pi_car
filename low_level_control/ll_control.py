@@ -110,6 +110,55 @@ def rotate_right(power):
     on()
     setpower(power)
 
+def t():
+
+    print("fwd")
+    forward(1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("back")
+    backward(1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("r l")
+    rotate_left(1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("r r")
+    rotate_right(1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("fwd r")
+    forward_turn_right(0.3, 0.1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("fwd l")
+    forward_turn_left(0.3, 0.1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("fwd r")
+    backward_turn_right(0.3, 0.1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+
+    print("fwd l")
+    backward_turn_left(0.3, 0.1)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
 
 # TODO
 def forward_turn_right(left_power, right_power):
