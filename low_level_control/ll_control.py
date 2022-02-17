@@ -9,10 +9,10 @@
 brightness = 0.1
 
 # max power send to both motors at once
-# with a regular power bank it should be no problem but 
+# with a regular power bank it should be no problem but
 # a computer's USB port might not have enough power
 # remember, if USB power is present the battery is ignored
-max_power = 1
+max_power = 0.5
 
 # color definitions (I don't like the formatting either)
 colors = {
@@ -85,31 +85,84 @@ def backward(power):
     on()
     setpower(power)
 
-# turning means only one motor is actually moving
-def turn_left(power):
+def rotate_left(power):
     set_pixels(colors["red"], colors["green"])
+    power = limit_power(power)
     talkto(M1)
-    off()
+    setright()
+    on()
     setpower(power)
     talkto(M3)
     setright()
     on()
     setpower(power)
 
-# turning means only one motor is actually moving
-def turn_right(power):
+def rotate_right(power):
     set_pixels(colors["green"], colors["red"])
+    set_pixels(colors["red"], colors["green"])
+    power = limit_power(power)
     talkto(M1)
+    setleft()
     on()
     setpower(power)
     talkto(M3)
-    off()
+    setleft()
+    on()
     setpower(power)
+
+
+# TODO
+def forward_turn_right(left_power, right_power):
+    set_pixels(colors["blue"], colors["blue"])
+    talkto(M1)
+    setleft()
+    on()
+    setpower(left_power)
+    talkto(M3)
+    setright()
+    on()
+    setpower(right_power)
+
+def forward_turn_left(left_power, right_power):
+    set_pixels(colors["blue"], colors["blue"])
+    talkto(M1)
+    setleft()
+    on()
+    setpower(left_power)
+    talkto(M3)
+    setright()
+    on()
+    setpower(right_power)
+
+def backward_turn_right(left_power, right_power):
+    set_pixels(colors["blue"], colors["blue"])
+    talkto(M1)
+    setright()
+    on()
+    setpower(left_power)
+    talkto(M3)
+    setleft()
+    on()
+    setpower(right_power)
+
+def backward_turn_left(left_power, right_power):
+    set_pixels(colors["blue"], colors["blue"])
+    talkto(M1)
+    setright()
+    on()
+    setpower(left_power)
+    talkto(M3)
+    setleft()
+    on()
+    setpower(right_power)
 
 # move forward until the sensor says no ;)
 def auto_forward():
     while True:
         power = read(A1)
+        if(power < 0.1):
+            stop()
+            return
         power = limit_power(power)
         print(power)
         forward(power)
