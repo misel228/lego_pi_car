@@ -37,6 +37,8 @@ start_stream:
 	#low latency version here
 	#raspivid -t 0 -w 1280 -h 720 -o - | nc 192.168.22.151 5555
 
+	while true; do libcamera-vid --nopreview --autofocus -t 0 --width 1280 --height 720 --codec mjpeg --inline --listen -o tcp://0.0.0.0:8888; done &
+
 stop: stop_service stop_website stop_stream
 
 stop_service:

@@ -1,6 +1,6 @@
 console.log("scripts.js loaded")
 
-var ws = new WebSocket("ws://192.168.22.145:5678/");
+var ws = new WebSocket("ws://192.168.22.148:5678/");
 var socket_connected = false;
 var interval_callback;
 
